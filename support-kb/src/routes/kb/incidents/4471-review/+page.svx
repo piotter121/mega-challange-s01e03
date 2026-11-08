@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 reviewed: two date bugs hidden by one ticket'
 owner: piotter121 / OpenCode harness
-status: reviewed — fixes not verified
+status: closed — parser fixed; hint retired
 reviewed: '2026-11-08'
 signature: 'GPT-6.1 Sol / OpenCode for piotter121 / S01E03 / 2026-11-08'
 ---
@@ -14,6 +14,7 @@ signature: 'GPT-6.1 Sol / OpenCode for piotter121 / S01E03 / 2026-11-08'
   import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
   import Callout from '#lib/kb/Callout.svelte';
+  import EngineeringUpdate from '#lib/kb/EngineeringUpdate.svelte';
 </script>
 
 This review replaces the diagnosis in [the original incident page](/kb/incidents/4471), not its evidence.
@@ -23,7 +24,10 @@ Review date and export date are different. Counts and tables below are computed 
 <Callout kind="warn">
 One merged ticket does not mean one bug. The parser and the booking-form hint need separate fixes and separate verification.
 Do not close either because the other fix ships. “Known” is a triage label, not evidence that a fix works.
+The later engineering update below gives a distinct disposition for each problem.
 </Callout>
+
+<EngineeringUpdate />
 
 ## Separate problems and tickets
 
@@ -81,7 +85,8 @@ Read the body too, because a tenant-based classifier cannot prove that every sym
 - Link new reports to the correct problem ticket only after checking tenant, channel, form and symptoms.
 - Keep report IDs unique; overlapping export pages are not extra affected users.
 - Keep anomalous symptoms visible and request the evidence listed above. Do not invent a timezone diagnosis.
-- Track parser and hint fixes separately, with reproduction and regression evidence before closing.
+- Track parser and hint dispositions separately: completed for the reported parser fix, not planned for the retired form.
+- Before claiming deployment verification, obtain reproduction and regression evidence; this review only has the desk's status report.
 - Refresh this snapshot against current desk data before making a live-status claim.
 
 <RenderStamp {signature} />

@@ -19,6 +19,14 @@ while 184 were bulk merged on 2 July. Reports continue through 4 October in this
 The five one-day-move readings remain explicitly visible within the classifier's parser total;
 they are unresolved symptoms, not evidence for an invented third confirmed root cause.
 
+## Later engineering update
+
+After the course accepted the tickets, its challenge page revealed that source #4471 closed on **2026-10-05**:
+the parser was **fixed** (`fix(dates): parse dd/mm for eu locales`), while the hint was **won't fix** because
+**booking-v3 form retired**. The public tickets therefore use different closure reasons: parser **completed**,
+hint **not planned**. The review renders this later update separately from the original export counts.
+This is reported engineering status, not an independent production verification or a diagnosis of the five exceptional reports.
+
 ## Render and reproduce
 
 Use Node.js 24 or newer:
@@ -50,5 +58,5 @@ The rendered header's review-age label is computed at build time and will change
 - Original incident/triage pages are historical evidence and still contain the old claims. Use the new review and decision for this analysis.
 - Counts are snapshot counts, not live production measurements or numbers of distinct users.
 - Reproduction steps in the tickets are derived from the supplied model, not tested against a production booking system.
-- Review publication does not assert that the live desk adopted the proposal, shipped either fix, or resolved the exceptional reports.
+- Review publication does not assert that the live desk adopted decision 0002 or resolved the exceptional reports; later engineering status is attributed to the course update.
 - Local OpenCode configuration, credentials, downloads and course-session data are not published.

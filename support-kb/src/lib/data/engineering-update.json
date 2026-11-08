@@ -1,0 +1,18 @@
+{
+  "source": "https://hq.mega.dev/challenges/what-it-shows",
+  "observedAt": "2026-11-08",
+  "sourceTicket": 4471,
+  "closedAt": "2026-10-05",
+  "parser": {
+    "status": "fixed",
+    "detail": "fix(dates): parse dd/mm for eu locales",
+    "issue": "https://github.com/piotter121/mega-challange-s01e03/issues/2",
+    "githubReason": "completed"
+  },
+  "hint": {
+    "status": "won't fix",
+    "detail": "booking-v3 form retired",
+    "issue": "https://github.com/piotter121/mega-challange-s01e03/issues/1",
+    "githubReason": "not planned"
+  }
+}

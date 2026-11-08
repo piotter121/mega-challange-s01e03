@@ -39,7 +39,13 @@ These 5 reports are filed as parser by the tenant-based classifier. Their bodies
 
 Recover original date input, invite and calendar values, booking creation time, client timezones/offsets and parser/form versions. Reproduce the discrepancy before reassigning cause or count.
 
-## Acceptance criteria
+## Latest engineering disposition
+
+The [course challenge page](https://hq.mega.dev/challenges/what-it-shows), read on 2026-11-08 after first submission, reports source #4471 closed 2026-10-05. **fixed**: fix(dates): parse dd/mm for eu locales.
+
+Close this GitHub issue as **completed**. This is the desk's reported disposition, not an independent production verification. The five anomalous symptoms remain noted above; the aggregate fix report does not diagnose them separately.
+
+## Original fix acceptance criteria
 
 - Resolve date input using an explicit, consistent format instead of silently assuming month first.
 - Test app, email and booking-v2 paths across the tenant locales, ambiguous dates and day values above twelve.

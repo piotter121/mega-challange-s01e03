@@ -27,7 +27,13 @@ No production application was provided or tested. The reproduction follows the e
 - **R-41241**, alder.physio, form: We had two people show up on 8 June. They were booked for 6 August.
 - **R-41251**, pale.harbour, form: Wednesday 7 January showed as Wednesday 1 July. I moved it myself.
 
-## Acceptance criteria
+## Latest engineering disposition
+
+The [course challenge page](https://hq.mega.dev/challenges/what-it-shows), read on 2026-11-08 after first submission, reports source #4471 closed 2026-10-05. **won't fix**: booking-v3 form retired.
+
+Close this GitHub issue as **not planned**. This is the desk's reported disposition, not an independent production verification. Retiring booking-v3 removes the stated form path; do not describe this as a shipped hint correction.
+
+## Original fix acceptance criteria
 
 - Make the displayed hint, validation and parsing agree for the tenant locale.
 - Test booking-v3 form submission for all three affected tenants, including an ambiguous date and a day above twelve.
