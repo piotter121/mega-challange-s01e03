@@ -1,0 +1,87 @@
+---
+layout: runbook
+title: '#4471 reviewed: two date bugs hidden by one ticket'
+owner: piotter121 / OpenCode harness
+status: reviewed — fixes not verified
+reviewed: '2026-11-08'
+signature: 'GPT-6.1 Sol / OpenCode for piotter121 / S01E03 / 2026-11-08'
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import ReportReview from '#lib/kb/ReportReview.svelte';
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+</script>
+
+This review replaces the diagnosis in [the original incident page](/kb/incidents/4471), not its evidence.
+The export ends on 4 October 2026. This is a review of that snapshot, not a claim that the live desk stopped then.
+Review date and export date are different. Counts and tables below are computed from the supplied data and classifier.
+
+<Callout kind="warn">
+One merged ticket does not mean one bug. The parser and the booking-form hint need separate fixes and separate verification.
+Do not close either because the other fix ships. “Known” is a triage label, not evidence that a fix works.
+</Callout>
+
+## Separate problems and tickets
+
+### Parser: month-first interpretation in a day-first tenant
+
+The shared parser reads dates month first. A day-first tenant's intended 7 April can become 4 July.
+This affects app and email intake, plus forms that do not take the booking-v3 hint path.
+Classify using the tenant's configured locale and the actual channel, not the reporter's browser locale.
+
+[Parser issue #2 and report membership](https://github.com/piotter121/mega-challange-s01e03/issues/2).
+Reproduce with an ambiguous date, then verify the intended date survives parsing, storage, invite and reminder.
+Include a date whose day exceeds twelve to check rejection/validation rather than a silent swap.
+
+### Hint: booking-v3 tells day-first users to enter month first
+
+The booking-v3 form prints `MM/DD/YYYY` while interpreting input according to the day-first tenant locale.
+The hint encourages an input order that the form then reads differently. The affected form tenants are
+`alder.physio`, `copper.studio` and `pale.harbour`; their app/email reports still take the parser path.
+
+[Hint issue #1 and report membership](https://github.com/piotter121/mega-challange-s01e03/issues/1).
+Make the displayed hint, validation and interpretation agree. Test each affected tenant on booking-v3,
+and check booking-v2 plus month-first locale controls. A parser-only change does not establish that the hint is fixed.
+
+The following original component shows the exported desk state. Its “no ticket of its own” label
+describes that snapshot; the links above identify the separate GitHub tickets created by this review.
+
+<CauseTable ticket={4471} />
+
+<ReportReview ticket={4471} />
+
+## Read both series, not just the spike
+
+<QueueTimeline ticket={4471} />
+
+The received series tells when reports reached support. The merged series tells when the desk filed them together.
+Use received dates to discuss incident history; do not date the start from the bulk merger.
+
+## Triage rule: same cause, not same subject
+
+[Decision 0001](/kb/decisions/0001-dedupe-by-subject) was accepted on 11 June 2024.
+It is kept unchanged as a historical record, but its subject-only merge rule is superseded by
+[decision 0002](/kb/decisions/0002-dedupe-by-cause).
+Its old review date warrants rechecking, not automatic acceptance of the prose.
+The runnable explorer already distinguishes causes and disagrees with that old rule.
+
+<DedupeExplorer />
+
+Different subjects can describe the same cause. Matching subjects can describe different causes because
+the tenant's form or the intake channel differs. With no tenant on file, the classifier returns no cause:
+keep the report unplaced and investigate; two unknown causes are not a duplicate match.
+Read the body too, because a tenant-based classifier cannot prove that every symptom has that cause.
+
+## Next desk actions
+
+- Link new reports to the correct problem ticket only after checking tenant, channel, form and symptoms.
+- Keep report IDs unique; overlapping export pages are not extra affected users.
+- Keep anomalous symptoms visible and request the evidence listed above. Do not invent a timezone diagnosis.
+- Track parser and hint fixes separately, with reproduction and regression evidence before closing.
+- Refresh this snapshot against current desk data before making a live-status claim.
+
+<RenderStamp {signature} />

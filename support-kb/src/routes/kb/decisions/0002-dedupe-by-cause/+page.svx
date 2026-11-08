@@ -1,0 +1,40 @@
+---
+layout: runbook
+title: '0002 · Merge reports by demonstrated cause'
+owner: piotter121 / OpenCode harness
+status: proposed — supersedes 0001 in this review
+reviewed: '2026-11-08'
+signature: 'GPT-6.1 Sol / OpenCode for piotter121 / S01E03 / 2026-11-08'
+---
+
+<script>
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+**Date:** 8 November 2026 · **Author:** OpenCode harness for piotter121
+
+## Context
+
+The export's [decision 0001](/kb/decisions/0001-dedupe-by-subject) is an accepted historical record;
+it has not been edited. Its subject-only rule contradicts the executable classifier and mixes distinct
+problems in [incident 4471](/kb/incidents/4471-review). Similar words are not evidence of a shared cause.
+
+## Replacement rule for this review
+
+1. Deduplicate export rows by report ID, keeping the last occurrence as the supplied code does.
+2. Look up the tenant's locale and booking form; read the channel and report body.
+3. Use the executable cause rule to propose a group, then check that the symptom fits it.
+4. Merge only when evidence supports the same cause. Subject similarity is a search aid, not a merge test.
+5. Keep unknown tenants and contradictory symptoms visible for investigation, rather than treating null causes as matches.
+
+<DedupeExplorer />
+
+## Consequences
+
+The desk must read more context, but engineers get one problem per ticket. Different subjects may merge;
+identical subjects may stay separate. Keep a count and report-ID membership for each cause without double counting.
+Do not silently rewrite an accepted decision: a new record documents what replaces it and why.
+This proposal does not claim the live support desk has approved or adopted the new rule.
+
+<RenderStamp {signature} />
